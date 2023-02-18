@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>UNDER CONSTRUCTION</title>
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'/>
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'/>
+    <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+<div class="container">
+    <div class="background">
+        <img src="assets/img/bg1.png" alt="bg" style="width:20%"/>
+        <img src="assets/img/bg2.png" alt="bg" style="width:20%"/>
+    </div>
+
+    <header>
+        <img src="assets/img/logo.png" alt="logo" class="logo"/>
+    </header>
+
+    <div class="main">
+        <h1>Under Construction</h1>
+        <span class="description">We're making lots of improvements and will be back soon</span>
+        <div class="timer" id="demo">
+            <div class="time">
+                <span id="days"></span>
+                <div class="text-wrapper">
+                    <img src="assets/img/Vector.png" alt="days"/>
+                    <span class="text">Days</span>
+                </div>
+            </div>
+            <div class="divider">:</div>
+            <div class="time">
+                <div class="time">
+                    <span id="hours"></span>
+                    <div class="text-wrapper">
+                        <img src="assets/img/Vector.png" alt="hours"/>
+                        <span class="text">Hours</span>
+                    </div>
+                </div>
+            </div>
+            <div class="divider">:</div>
+            <div class="time">
+                <span id="minutes"></span>
+                <div class="text-wrapper">
+                    <img src="assets/img/Vector.png" alt="minutes"/>
+                    <span class="text">Minutes</span>
+                </div>
+            </div>
+            <div class="divider">:</div>
+            <div class="time">
+                <span id="seconds"></span>
+                <div class="text-wrapper">
+                    <img src="assets/img/Vector.png" alt="seconds"/>
+                    <span class="text">Seconds</span>
+                </div>
+            </div>
+        </div>
+        <span class="description">Check our event page when you wait:</span>
+        <a class="event-button" id="js-go-btn" href="https://learn.javascript.ru/" target="_blank">
+            Go to the event
+            <object data="assets/img/arrow-right.svg" width="20" height="20"></object>
+        </a>
+    </div>
+
+    <footer class="footer">
+        <form class="notification-form" id="form">
+            <input type="text" id="js-notification-form-input" class="notification-form-input" placeholder="Enter your Email and get notified"/>
+            <button type="submit" class="red-button" id="js-submit-btn">
+                <object data="assets/img/arrow-right.svg" width="20" height="20"></object>
+            </button>
+        </form>
+    </footer>
+
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="modal-content-body">
+                <h2 class="modal-content-title">SUCCESS!</h2>
+                <span class="modal-content-description">You have successfully subscribed to the email newsletter</span>
+                <button class="event-button modal-content-close-btn" id="js-close-btn">Close</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<script src="main.js"></script>
+</body>
+</html>
