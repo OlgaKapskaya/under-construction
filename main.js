@@ -22,7 +22,7 @@ const interval = setInterval(function() {
 
 
 //modal window logic
-function createModal(){
+function createModal(title, description = ''){
     let container = document.getElementsByClassName('container')
 
     let modal = document.createElement('div')
@@ -46,12 +46,12 @@ function createModal(){
     let modalContentTitle = document.createElement('h2')
     modalContentBody.appendChild(modalContentTitle)
     modalContentTitle.classList.add('modal-content-title')
-    modalContentTitle.innerHTML = 'SUCCESS!'
+    modalContentTitle.innerHTML = title
 
     let modalContentDescription = document.createElement('div')
     modalContentBody.appendChild(modalContentDescription)
     modalContentDescription.classList.add('modal-content-description')
-    modalContentDescription.innerHTML = 'You have successfully subscribed to the email newsletter'
+    modalContentDescription.innerHTML = description
 
     let closeBtn = document.createElement('button')
     modalContentBody.appendChild(closeBtn)
@@ -61,23 +61,26 @@ function createModal(){
     closeBtn.innerHTML = 'Close'
 }
 function useModal(){
-    createModal()
     const modal = document.getElementById("myModal");
     const closeBtn = document.getElementById("js-close-btn");
     const span = document.getElementsByClassName("close")[0];
 
     closeBtn.onclick = function() {
-        modal.style.display = "none";
+        deleteModal()
     }
     span.onclick = function() {
-        modal.style.display = "none";
+        deleteModal()
     }
     window.onclick = function(event) {
         if (event.target === modal) {
             modal.style.display = "none";
         }
     }
-    modal.style.display = "block"
+}
+function deleteModal(){
+    const container = document.getElementsByClassName('container')[0]
+    const modal = document.getElementById("myModal");
+    container.removeChild(modal)
 }
 
 
@@ -126,13 +129,15 @@ function sentForm() {
         body: JSON.stringify(object)
     })
         .then(data => {
+            createModal('SUCCESS!', 'You have successfully subscribed to the email newsletter')
             useModal()
             submitButton.disabled = false
             input.disabled = false
             form.reset()
         })
         .catch(e => {
-            console.log(e.message)
+            createModal(e.message)
+            useModal()
             submitButton.disabled = false
             input.disabled = false
         })
