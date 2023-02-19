@@ -22,21 +22,64 @@ const interval = setInterval(function() {
 
 
 //modal window logic
-const modal = document.getElementById("myModal");
-const closeBtn = document.getElementById("js-close-btn");
-const span = document.getElementsByClassName("close")[0];
+function createModal(){
+    let container = document.getElementsByClassName('container')
 
-closeBtn.onclick = function() {
-    modal.style.display = "none";
+    let modal = document.createElement('div')
+    container[0].appendChild(modal)
+    modal.classList.add('modal')
+    modal.setAttribute('id', 'myModal')
+
+    let modalContent = document.createElement('div')
+    modal.appendChild(modalContent)
+    modalContent.classList.add('modal-content')
+
+    let close = document.createElement('span')
+    modalContent.appendChild(close)
+    close.classList.add('close')
+    close.innerHTML = '&times;'
+
+    let modalContentBody = document.createElement('div')
+    modalContent.appendChild(modalContentBody)
+    modalContentBody.classList.add('modal-content-body')
+
+    let modalContentTitle = document.createElement('h2')
+    modalContentBody.appendChild(modalContentTitle)
+    modalContentTitle.classList.add('modal-content-title')
+    modalContentTitle.innerHTML = 'SUCCESS!'
+
+    let modalContentDescription = document.createElement('div')
+    modalContentBody.appendChild(modalContentDescription)
+    modalContentDescription.classList.add('modal-content-description')
+    modalContentDescription.innerHTML = 'You have successfully subscribed to the email newsletter'
+
+    let closeBtn = document.createElement('button')
+    modalContentBody.appendChild(closeBtn)
+    closeBtn.classList.add('event-button')
+    closeBtn.classList.add('modal-content-close-btn')
+    closeBtn.setAttribute('id', 'js-close-btn')
+    closeBtn.innerHTML = 'Close'
 }
-span.onclick = function() {
-    modal.style.display = "none";
-}
-window.onclick = function(event) {
-    if (event.target === modal) {
+function useModal(){
+    createModal()
+    const modal = document.getElementById("myModal");
+    const closeBtn = document.getElementById("js-close-btn");
+    const span = document.getElementsByClassName("close")[0];
+
+    closeBtn.onclick = function() {
         modal.style.display = "none";
     }
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+    window.onclick = function(event) {
+        if (event.target === modal) {
+            modal.style.display = "none";
+        }
+    }
+    modal.style.display = "block"
 }
+
 
 //sent form logic
 const form = document.getElementById('form');
@@ -60,11 +103,11 @@ function formSubmit(e) {
 }
 function validate() {
     const email = input.value.trim()
+    let isError = true
     if (email) {
-        return !(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,8})+$/.test(email))
-    } else {
-        return true
+        isError = !(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,8})+$/.test(email))
     }
+    return isError
 }
 
 function sentForm() {
@@ -83,7 +126,7 @@ function sentForm() {
         body: JSON.stringify(object)
     })
         .then(data => {
-            modal.style.display = "block"
+            useModal()
             submitButton.disabled = false
             input.disabled = false
             form.reset()
