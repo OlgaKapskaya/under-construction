@@ -1,7 +1,42 @@
+let container = document.getElementsByClassName('container')
+let timer = document.getElementById('timer')
+
+//added times block
+const data = ['days', 'hours', 'minutes', 'seconds']
+for (let i = 0; i < data.length; i++) {
+    let excel = document.createElement('div')
+    timer.appendChild(excel)
+    excel.classList.add('time')
+
+    let title = document.createElement('span')
+    excel.appendChild(title)
+    title.setAttribute('id', data[i])
+
+    let wrapper = document.createElement('div')
+    excel.appendChild(wrapper)
+    wrapper.classList.add('text-wrapper')
+
+    let img = document.createElement('img')
+    wrapper.appendChild(img)
+    img.alt = data[i]
+    img.src = 'assets/img/Vector.png'
+
+    let text = document.createElement('span')
+    wrapper.appendChild(text)
+    text.classList.add('text')
+    text.innerHTML = data[i]
+    text.style.textTransform = 'capitalize'
+
+    let divider = document.createElement('div')
+    timer.appendChild(divider)
+    divider.classList.add('divider')
+    if (i !== data.length-1) divider.innerHTML = ':'
+}
+
 //date timer logic
 const endDate = new Date("May 5, 2023 00:00:00").getTime();
 
-const interval = setInterval(function() {
+const interval = setInterval(function () {
 
     const now = new Date().getTime();
 
@@ -22,9 +57,7 @@ const interval = setInterval(function() {
 
 
 //modal window logic
-function createModal(title, description = ''){
-    let container = document.getElementsByClassName('container')
-
+function createModal(title, description = '') {
     let modal = document.createElement('div')
     container[0].appendChild(modal)
     modal.classList.add('modal')
@@ -60,24 +93,26 @@ function createModal(title, description = ''){
     closeBtn.setAttribute('id', 'js-close-btn')
     closeBtn.innerHTML = 'Close'
 }
-function useModal(){
+
+function useModal() {
     const modal = document.getElementById("myModal");
     const closeBtn = document.getElementById("js-close-btn");
     const span = document.getElementsByClassName("close")[0];
 
-    closeBtn.onclick = function() {
+    closeBtn.onclick = function () {
         deleteModal()
     }
-    span.onclick = function() {
+    span.onclick = function () {
         deleteModal()
     }
-    window.onclick = function(event) {
+    window.onclick = function (event) {
         if (event.target === modal) {
             modal.style.display = "none";
         }
     }
 }
-function deleteModal(){
+
+function deleteModal() {
     const container = document.getElementsByClassName('container')[0]
     const modal = document.getElementById("myModal");
     container.removeChild(modal)
@@ -104,6 +139,7 @@ function formSubmit(e) {
         console.log('error')
     }
 }
+
 function validate() {
     const email = input.value.trim()
     let isError = true
@@ -131,13 +167,13 @@ function sentForm() {
         .then(data => {
             createModal('SUCCESS!', 'You have successfully subscribed to the email newsletter')
             useModal()
-            submitButton.disabled = false
-            input.disabled = false
             form.reset()
         })
         .catch(e => {
             createModal(e.message)
             useModal()
+        })
+        .finally(() => {
             submitButton.disabled = false
             input.disabled = false
         })
