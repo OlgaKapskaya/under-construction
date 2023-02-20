@@ -2,58 +2,68 @@ let container = document.getElementsByClassName('container')
 let timer = document.getElementById('timer')
 
 //added times block
-const data = ['days', 'hours', 'minutes', 'seconds']
-for (let i = 0; i < data.length; i++) {
-    let excel = document.createElement('div')
-    timer.appendChild(excel)
-    excel.classList.add('time')
+document.addEventListener('DOMContentLoaded', function () {
+    const data = ['days', 'hours', 'minutes', 'seconds']
+    for (let i = 0; i < data.length; i++) {
+        let excel = document.createElement('div')
+        timer.appendChild(excel)
+        excel.classList.add('time')
 
-    let title = document.createElement('span')
-    excel.appendChild(title)
-    title.setAttribute('id', data[i])
+        let title = document.createElement('span')
+        excel.appendChild(title)
+        title.setAttribute('id', data[i])
 
-    let wrapper = document.createElement('div')
-    excel.appendChild(wrapper)
-    wrapper.classList.add('text-wrapper')
+        let wrapper = document.createElement('div')
+        excel.appendChild(wrapper)
+        wrapper.classList.add('text-wrapper')
 
-    let img = document.createElement('img')
-    wrapper.appendChild(img)
-    img.alt = data[i]
-    img.src = 'assets/img/Vector.png'
+        let img = document.createElement('img')
+        wrapper.appendChild(img)
+        img.alt = data[i]
+        img.src = 'assets/img/Vector.png'
 
-    let text = document.createElement('span')
-    wrapper.appendChild(text)
-    text.classList.add('text')
-    text.innerHTML = data[i]
-    text.style.textTransform = 'capitalize'
+        let text = document.createElement('span')
+        wrapper.appendChild(text)
+        text.classList.add('text')
+        text.innerHTML = data[i]
+        text.style.textTransform = 'capitalize'
 
-    let divider = document.createElement('div')
-    timer.appendChild(divider)
-    divider.classList.add('divider')
-    if (i !== data.length-1) divider.innerHTML = ':'
-}
+        let divider = document.createElement('div')
+        timer.appendChild(divider)
+        divider.classList.add('divider')
+        if (i !== data.length - 1) divider.innerHTML = ':'
+    }
 
 //date timer logic
-const endDate = new Date("May 5, 2023 00:00:00").getTime();
+    const endDate = new Date("May 5, 2023 00:00:00").getTime();
 
-const interval = setInterval(function () {
+    const interval = setInterval(function () {
 
-    const now = new Date().getTime();
+        const now = new Date().getTime();
 
-    const distance = endDate - now;
+        const distance = endDate - now;
 
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
 
-    document.getElementById("days").innerHTML = " " + days;
-    document.getElementById("hours").innerHTML = " " + hours;
-    document.getElementById("minutes").innerHTML = " " + minutes;
-    document.getElementById("seconds").innerHTML = " " + seconds;
+        document.getElementById("days").innerHTML = " " + days;
+        document.getElementById("hours").innerHTML = addZero(hours);
+        document.getElementById("minutes").innerHTML = addZero(minutes);
+        document.getElementById("seconds").innerHTML = addZero(seconds);
 
-}, 1000);
+    }, 1000);
+
+
+function addZero(num) {
+    if (num >= 0 && num < 10) {
+        return '0' + num;
+    } else {
+        return num;
+    }
+}
 
 
 //modal window logic
@@ -178,4 +188,5 @@ function sentForm() {
             input.disabled = false
         })
 }
+})
 

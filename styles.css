@@ -1,8 +1,10 @@
-html, body {
-    height: 100vh;
+body {
+    height: 100%;
     margin: 0;
     padding: 0;
-    overflow: hidden;
+
+    font-family: 'Poppins', sans-serif;
+    font-style: normal;
 }
 .background {
     display: flex;
@@ -10,23 +12,15 @@ html, body {
     justify-content: space-between;
 
     position: fixed;
-}
-body {
-    position: relative;
-    overflow: auto;
+    animation: animate 1s;
 }
 
 .container {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
     flex-direction: column;
+    min-height: 100%;
 
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
+    position: relative;
 }
 
 .main {
@@ -37,46 +31,39 @@ body {
 }
 
 h1 {
-    width: 100%;
-
-    font-family: 'Poppins', sans-serif;
-    font-style: normal;
     font-weight: 700;
     font-size: 72px;
-
     text-align: center;
     text-transform: uppercase;
 
     color: #162C4E;
-
     opacity: 0.39;
-    margin: 0;
-    margin-block-start: 0;
-    margin-block-end: 0;
+
+    margin-bottom: 0;
+
+    animation: animate 0.5s;
 }
 
 .description {
     width: 423px;
-    font-family: 'Poppins', sans-serif;
-    font-style: normal;
     font-weight: 400;
     font-size: 18px;
-
     text-align: center;
     color: rgba(0, 0, 0, 0.8);
 
-    margin: 12px 0;
-}
-
-header {
-    width: 100%;
-    height: 60px;
+    animation: animate 0.5s;
 }
 
 .logo {
+    display: flex;
     width: 190px;
     height: 60px;
     padding-top: 65px;
+    align-self: center;
+    cursor: pointer;
+
+    animation: animate 0.5s;
+    z-index: 1;
 }
 
 .timer {
@@ -84,13 +71,13 @@ header {
     align-items: center;
     justify-content: center;
     width: 100%;
+
+    animation: animate 0.5s;
 }
 
 .time, .divider {
     display: flex;
 
-    font-family: 'Poppins', sans-serif;
-    font-style: normal;
     font-weight: 600;
     font-size: 72px;
     line-height: 100%;
@@ -118,7 +105,6 @@ header {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-family: 'Poppins', sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
@@ -137,8 +123,6 @@ header {
 
     cursor: pointer;
 
-    font-family: 'Poppins', sans-serif;
-    font-style: normal;
     font-weight: 400;
     font-size: 18px;
     line-height: 150%;
@@ -147,7 +131,8 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 20px
+    gap: 20px;
+    margin-top: 20px;
 }
 
 .event-button:hover {
@@ -221,6 +206,12 @@ input:disabled {
     position: absolute;
     top: calc(50% - 22px);
     right: 7px;
+
+    background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4.16669 10H15.8334' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M10 4.16666L15.8333 9.99999L10 15.8333' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+
+    cursor: pointer;
 }
 
 .red-button:hover {
@@ -231,15 +222,15 @@ input:disabled {
     cursor: default;
 }
 
-@media screen and (max-width: 665px) {
-    h1 {
-        font-size: 5vh;
-    }
+/*@media screen and (max-width: 665px) {*/
+/*    h1 {*/
+/*        font-size: 5vh;*/
+/*    }*/
 
-    .time, .divider {
-        font-size: 5vh;
-    }
-}
+/*    .time, .divider {*/
+/*        font-size: 5vh;*/
+/*    }*/
+/*}*/
 
 .modal {
     display: block;
@@ -249,7 +240,7 @@ input:disabled {
     top: 0;
     width: 100%;
     height: 100%;
-    overflow: auto;
+    overflow: hidden;
     background-color: rgba(0, 0, 0, 0.6);
 }
 
@@ -275,7 +266,6 @@ input:disabled {
 }
 
 .modal-content-title {
-    font-family: 'Poppins', sans-serif;
     font-style: normal;
     font-weight: 700;
     font-size: 36px;
@@ -287,7 +277,6 @@ input:disabled {
 }
 
 .modal-content-description {
-    font-family: 'Poppins', sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
@@ -327,4 +316,15 @@ input:-webkit-autofill:hover,
 input:-webkit-autofill:focus {
     -webkit-text-fill-color: black;
     transition: background-color 5000s ease-in-out 0s;
+}
+
+
+@keyframes animate {
+    to {
+        transform: translateY(0px);
+    }
+
+    from {
+        transform: translateY(-50px);
+    }
 }
